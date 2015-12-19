@@ -2,7 +2,6 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
     if (request.action == "getSource") {
         chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
             var url = tabs[0].url;
-            siteName = getWebsiteName(url);
             try{
                 var urlParts = url.split('/');
                 var filename = '';
@@ -17,7 +16,6 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
                 return;
             } catch(e) {
                 console.log(e.message);
-                shopclues(request.source, url);
             }
         });
     }
